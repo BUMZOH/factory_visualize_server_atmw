@@ -12,6 +12,7 @@ __pycache__/
 *.db
 
 # 認証関係
-secrets/
+app/secrets/*
+
 # READMEは管理
-!secrets/README.md
+!app/secrets/README.md
