@@ -7,11 +7,3 @@ __pycache__/
 
 # 環境変数
 .env
-
-# SQLite
-*.db
-
-# 認証関係
-secrets/
-# READMEは管理
-!secrets/README.md

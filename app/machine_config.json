@@ -1,0 +1,61 @@
+{
+    "master_plc": {
+        "description": "工場全体監視用マスタPLC",
+        "ip_address": "172.20.1.111",
+        "port": 8501        
+    },
+
+
+    "machines": {
+        "1": {
+            "description": "横穴加工機 KDP",
+            "enable": true,
+            "status_device": "DM400",
+            "actual_count_device": "DM500",
+            "target_count_device": "DM600",
+            "alarm_count_device": "DM700",
+            "spreadsheet_position": "B4"
+        },
+
+        "3": {
+            "description": "横穴加工機 KDP",
+            "enable": true,
+            "status_device": "DM405",
+            "actual_count_device": "DM505",
+            "target_count_device": "DM605",
+            "alarm_count_device": "DM705",
+            "spreadsheet_position": "B5"
+
+        },
+        
+        "4": {
+            "description": "横穴加工機 KDP",
+            "enable": true,
+            "status_device": "DM406",
+            "actual_count_device": "DM506",
+            "target_count_device": "DM606",
+            "alarm_count_device": "DM706",
+            "spreadsheet_position": "B6"
+        },
+
+        "6": {
+            "description": "横穴加工機 KDP",
+            "enable": true,
+            "status_device": "DM407",
+            "actual_count_device": "DM507",
+            "target_count_device": "DM607",
+            "alarm_count_device": "DM707",
+            "spreadsheet_position": "B7"
+        },
+
+        "7": {
+            "description": "横穴加工機 KDP",
+            "enable": true,
+            "status_device": "DM408",
+            "actual_count_device": "DM508",
+            "target_count_device": "DM608",
+            "alarm_count_device": "DM708",
+            "spreadsheet_position": "B8"
+        }
+    }
+}
