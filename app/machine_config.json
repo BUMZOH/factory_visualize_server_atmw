@@ -9,6 +9,7 @@
     "machines": {
         "1": {
             "description": "横穴加工機 KDP",
+            "name":"KDP",
             "enable": true,
             "status_device": "DM400",
             "actual_count_device": "DM500",
@@ -19,6 +20,7 @@
 
         "3": {
             "description": "横穴加工機 KDP",
+            "name":"KDP",
             "enable": true,
             "status_device": "DM405",
             "actual_count_device": "DM505",
@@ -30,6 +32,7 @@
         
         "4": {
             "description": "横穴加工機 KDP",
+            "name":"KDP",
             "enable": true,
             "status_device": "DM406",
             "actual_count_device": "DM506",
@@ -40,6 +43,7 @@
 
         "6": {
             "description": "横穴加工機 KDP",
+            "name":"KDP",
             "enable": true,
             "status_device": "DM407",
             "actual_count_device": "DM507",
@@ -50,12 +54,337 @@
 
         "7": {
             "description": "横穴加工機 KDP",
+            "name":"KDP",
             "enable": true,
             "status_device": "DM408",
             "actual_count_device": "DM508",
             "target_count_device": "DM608",
             "alarm_count_device": "DM708",
             "spreadsheet_position": "B8"
+        },
+
+        "10": {
+            "description": "横穴加工機 KDP",
+            "name":"KDP",
+            "enable": true,
+            "status_device": "DM401",
+            "actual_count_device": "DM501",
+            "target_count_device": "DM601",
+            "alarm_count_device": "DM701",
+            "spreadsheet_position": "B9"
+        },
+
+        "12": {
+            "description": "横穴加工機 KDP",
+            "name":"KDP",
+            "enable": true,
+            "status_device": "DM402",
+            "actual_count_device": "DM502",
+            "target_count_device": "DM602",
+            "alarm_count_device": "DM702",
+            "spreadsheet_position": "B10"
+        },
+
+        "13": {
+            "description": "横穴加工機 KDP",
+            "name":"KDP",
+            "enable": true,
+            "status_device": "DM409",
+            "actual_count_device": "DM509",
+            "target_count_device": "DM609",
+            "alarm_count_device": "DM709",
+            "spreadsheet_position": "B11"
+        },
+
+        "14": {
+            "description": "横穴加工機 KDP",
+            "name":"KDP",
+            "enable": true,
+            "status_device": "DM410",
+            "actual_count_device": "DM510",
+            "target_count_device": "DM610",
+            "alarm_count_device": "DM710",
+            "spreadsheet_position": "B12"
+        },
+
+        "17": {
+            "description": "横穴加工機 KDP",
+            "name":"KDP",
+            "enable": true,
+            "status_device": "DM411",
+            "actual_count_device": "DM511",
+            "target_count_device": "DM611",
+            "alarm_count_device": "DM711",
+            "spreadsheet_position": "B13"
+        },
+
+        "30": {
+            "description": "横穴加工機 KDP",
+            "name":"KDP",
+            "enable": true,
+            "status_device": "DM403",
+            "actual_count_device": "DM503",
+            "target_count_device": "DM603",
+            "alarm_count_device": "DM703",
+            "spreadsheet_position": "B14"
+        },
+
+        "32": {
+            "description": "横穴加工機 KDP",
+            "name":"KDP",
+            "enable": true,
+            "status_device": "DM412",
+            "actual_count_device": "DM512",
+            "target_count_device": "DM612",
+            "alarm_count_device": "DM712",
+            "spreadsheet_position": "B15"
+        },
+
+        "40": {
+            "description": "横穴加工機 KDP",
+            "name":"KDP",
+            "enable": true,
+            "status_device": "DM404",
+            "actual_count_device": "DM504",
+            "target_count_device": "DM604",
+            "alarm_count_device": "DM704",
+            "spreadsheet_position": "B16"
+        },
+
+
+        "18": {
+            "description": "先付加工機 RS",
+            "name":"RS-2",
+            "enable": true,
+            "status_device": "DM434",
+            "actual_count_device": "DM534",
+            "target_count_device": "DM634",
+            "alarm_count_device": "DM734",
+            "spreadsheet_position": "B20"
+        },
+
+        "36": {
+            "description": "縦穴加工機 RD",
+            "name":"RD-10R",
+            "enable": true,
+            "status_device": "DM436",
+            "actual_count_device": "DM536",
+            "target_count_device": "DM636",
+            "alarm_count_device": "DM736",
+            "spreadsheet_position": "B21"
+        },
+
+        "46": {
+            "description": "ミゾ入れ加工機",
+            "name":"TOWA1",
+            "enable": true,
+            "status_device": "DM435",
+            "actual_count_device": "DM535",
+            "target_count_device": "DM635",
+            "alarm_count_device": "DM735",
+            "spreadsheet_position": "B22"
+        },
+
+        "47": {
+            "description": "ミゾ入れ加工機",
+            "name":"TOWA3",
+            "enable": true,
+            "status_device": "DM437",
+            "actual_count_device": "DM537",
+            "target_count_device": "DM637",
+            "alarm_count_device": "DM737",
+            "spreadsheet_position": "B23"
+        },
+
+        "48": {
+            "description": "ミゾ入れ加工機",
+            "name":"TOWA4",
+            "enable": true,
+            "status_device": "DM438",
+            "actual_count_device": "DM538",
+            "target_count_device": "DM638",
+            "alarm_count_device": "DM738",
+            "spreadsheet_position": "B24"
+        },
+
+        "49": {
+            "description": "ミゾ入れ加工機",
+            "name":"TOWA5",
+            "enable": true,
+            "status_device": "DM439",
+            "actual_count_device": "DM539",
+            "target_count_device": "DM639",
+            "alarm_count_device": "DM739",
+            "spreadsheet_position": "B25"
+        },
+
+        "50": {
+            "description": "ミゾ入れ加工機",
+            "name":"TOWA6",
+            "enable": true,
+            "status_device": "DM440",
+            "actual_count_device": "DM540",
+            "target_count_device": "DM640",
+            "alarm_count_device": "DM740",
+            "spreadsheet_position": "B26"
+        },
+
+
+        "34": {
+            "description": "横穴加工機",
+            "name":"KDP-10R",
+            "enable": true,
+            "status_device": "DM424",
+            "actual_count_device": "DM524",
+            "target_count_device": "DM624",
+            "alarm_count_device": "DM724",
+            "spreadsheet_position": "J4"
+        },
+
+        "35": {
+            "description": "横穴加工機",
+            "name":"KDP-3R",
+            "enable": true,
+            "status_device": "DM425",
+            "actual_count_device": "DM525",
+            "target_count_device": "DM625",
+            "alarm_count_device": "DM725",
+            "spreadsheet_position": "J5"
+        },
+
+        "41": {
+            "description": "NC旋盤1号機",
+            "name":"NC1/XT-6M",
+            "enable": true,
+            "status_device": "DM420",
+            "actual_count_device": "DM520",
+            "target_count_device": "DM620",
+            "alarm_count_device": "DM720",
+            "spreadsheet_position": "J6"
+        },
+
+        "43": {
+            "description": "サーボ式横穴加工機KDPF 1号機",
+            "name":"KDPF-1",
+            "enable": true,
+            "status_device": "DM441",
+            "actual_count_device": "DM541",
+            "target_count_device": "DM641",
+            "alarm_count_device": "DM741",
+            "spreadsheet_position": "J7"
+        },
+
+        "44": {
+            "description": "NC旋盤2号機",
+            "name":"NC2/XT-6M",
+            "enable": true,
+            "status_device": "DM442",
+            "actual_count_device": "DM542",
+            "target_count_device": "DM642",
+            "alarm_count_device": "DM742",
+            "spreadsheet_position": "J8"
+        },
+
+        "45": {
+            "description": "NC旋盤3号機",
+            "name":"NC3/XT-6",
+            "enable": true,
+            "status_device": "DM443",
+            "actual_count_device": "DM543",
+            "target_count_device": "DM643",
+            "alarm_count_device": "DM743",
+            "spreadsheet_position": "J9"
+        },
+
+        "57": {
+            "description": "NC旋盤4号機",
+            "name":"NC4/XT-6",
+            "enable": true,
+            "status_device": "DM422",
+            "actual_count_device": "DM522",
+            "target_count_device": "DM622",
+            "alarm_count_device": "DM722",
+            "spreadsheet_position": "J10"
+        },
+
+        "63": {
+            "description": "サーボ式横穴加工機KDPF 2号機",
+            "name":"KDPF-2",
+            "enable": true,
+            "status_device": "DM427",
+            "actual_count_device": "DM527",
+            "target_count_device": "DM627",
+            "alarm_count_device": "DM727",
+            "spreadsheet_position": "J11"
+        },
+
+
+       "39": {
+            "description": "ピックアップ検査機 1号機",
+            "name":"KR/Pickup-1",
+            "enable": true,
+            "status_device": "DM431",
+            "actual_count_device": "DM531",
+            "target_count_device": "DM631",
+            "alarm_count_device": "DM731",
+            "spreadsheet_position": "J20"
+        },
+
+       "42": {
+            "description": "ピックアップ検査機 2号機",
+            "name":"KR/Pickup-2",
+            "enable": true,
+            "status_device": "DM432",
+            "actual_count_device": "DM532",
+            "target_count_device": "DM632",
+            "alarm_count_device": "DM732",
+            "spreadsheet_position": "J21"
+        },
+
+       "52": {
+            "description": "ハイブリッド検査機",
+            "name":"KRCV/Hybrid",
+            "enable": true,
+            "status_device": "DM449",
+            "actual_count_device": "DM549",
+            "target_count_device": "DM649",
+            "alarm_count_device": "DM749",
+            "spreadsheet_position": "J22"
+        },
+
+       "53": {
+            "description": "リングゲージ検査機 1号機",
+            "name":"KRCV/Ring1",
+            "enable": true,
+            "status_device": "DM430",
+            "actual_count_device": "DM530",
+            "target_count_device": "DM630",
+            "alarm_count_device": "DM730",
+            "spreadsheet_position": "J23"
+        },
+
+       "54": {
+            "description": "リングゲージ検査機 2号機",
+            "name":"KRCV/Ring2",
+            "enable": true,
+            "status_device": "DM429",
+            "actual_count_device": "DM529",
+            "target_count_device": "DM629",
+            "alarm_count_device": "DM729",
+            "spreadsheet_position": "J24"
+        },
+
+       "64": {
+            "description": "リング画像検査機",
+            "name":"KCV/RingImage",
+            "enable": true,
+            "status_device": "DM453",
+            "actual_count_device": "DM553",
+            "target_count_device": "DM653",
+            "alarm_count_device": "DM753",
+            "spreadsheet_position": "J25"
         }
+
+
     }
 }
