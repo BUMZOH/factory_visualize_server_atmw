@@ -12,7 +12,7 @@ __pycache__/
 *.db
 
 # ログ
-log.txt
+app/log.txt
 
 # 認証関係
 app/secrets/*
