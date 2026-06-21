@@ -3,8 +3,13 @@
 ## 概要
 
 ## 起動方法
+appフォルダ内run.batをダブルクリック
+ただし、プロジェクトフォルダ内の.venvを構築しておくこと
 
-## 必要ライブラリ
+## 開発環境
+Python 3.11.0
+Windows 10 Pro
+光和工業 本社文博用PC
 
 ## GoogleSpreadSheet関連
 URL : https://docs.google.com/spreadsheets/d/1lhgBJKB921__GgqreES7som-YchP-MikzS_Gq1ERsUM/
