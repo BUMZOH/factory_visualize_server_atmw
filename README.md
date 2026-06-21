@@ -13,7 +13,7 @@ Windows 10 Pro
 
 ## GoogleSpreadSheet関連
 URL : https://docs.google.com/spreadsheets/d/1lhgBJKB921__GgqreES7som-YchP-MikzS_Gq1ERsUM/
-Googleアカウント : daihyou1.mtwa@gmail.com (Pass:mtwa27**)
+Googleアカウント : daihyou1.mtwa@gmail.com
 Project ID : mitsuwa-mainfactory-visualize
 Client E-mail : spreadsheet-bot@mitsuwa-mainfactory-visualize.iam.gserviceaccount.com
 JSON File : mitsuwa-mainfactory.json
