@@ -20,7 +20,7 @@
 
         "3": {
             "description": "横穴加工機 KDP",
-            "name":"KDP",
+            "name":"KDP(34060)",
             "enable": true,
             "status_device": "DM405",
             "actual_count_device": "DM505",
@@ -32,7 +32,7 @@
         
         "4": {
             "description": "横穴加工機 KDP",
-            "name":"KDP",
+            "name":"KDP(35040)",
             "enable": true,
             "status_device": "DM406",
             "actual_count_device": "DM506",

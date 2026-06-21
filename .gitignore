@@ -11,8 +11,11 @@ __pycache__/
 # SQLite
 *.db
 
+# ログ
+log.txt
+
 # 認証関係
 app/secrets/*
-
-# READMEは管理
 !app/secrets/README.md
+
+

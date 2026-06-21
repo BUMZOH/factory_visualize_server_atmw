@@ -2,6 +2,8 @@ import json
 from pathlib import Path
 import gspread
 from gspread.utils import a1_to_rowcol, rowcol_to_a1
+from datetime import datetime
+import time
 # original modules
 from common_lib_mw import kv_com as kv
 
@@ -18,8 +20,8 @@ SPREADSHEET_ID = "1lhgBJKB921__GgqreES7som-YchP-MikzS_Gq1ERsUM"
 STATUS_NAME = {
     1: "刃具交換",
     2: "段替え",
-    3: "故障中",
-    4: "材料待ち",
+    3: "故障停止",
+    4: "材料切れ",
     13: "自動中",
     14: "停止中",
     15: "異常中"
@@ -38,12 +40,12 @@ STATUS_INFO = {
     },
 
     3: {
-        "name": "故障中",
+        "name": "故障停止",
         "bg_color": "pink",
     },
 
     4: {
-        "name": "材料待ち",
+        "name": "材料切れ",
         "bg_color": "light_blue",
     },
 
@@ -87,7 +89,7 @@ def get_status_cell(start_cell: str) -> str:
 
 def update_gspread(data:dict):
     spreadsheet = connect_gspread()
-    sht = spreadsheet.worksheet("シート1")
+    sht = spreadsheet.worksheet("RealtimeTable")
 
     update_list = []
 
@@ -121,8 +123,14 @@ def update_gspread(data:dict):
 
         # 将来的にはセル色を変更するプログラム追加予定
 
+    # 更新日時
+    update_time = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
+    update_list.append({
+        "range": "P1",
+        "values": [[update_time]]
+    })
 
-    print(update_list)
+    # debug_dump(update_list)
     sht.batch_update(update_list)
 
 
@@ -149,14 +157,43 @@ def read_data_from_plc(config) -> dict:
     return machine_results
 
 
+def debug_dump(data):
+    print(
+        json.dumps(
+            data,
+            indent=4,
+            ensure_ascii=False
+        )
+    )
+
+
+def log(msg: str):
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    log_file = BASE_DIR / "log.txt"
+
+    with log_file.open("a", encoding="utf-8") as f:
+        f.write(f"{now} {msg}\n")
+
+
 def main():
     global config
     config = load_config()
 
-    data = read_data_from_plc(config)
-    print(data)
+    while True:
+        try:
+            data = read_data_from_plc(config)
+            # debug_dump(data)
 
-    update_gspread(data)
+            print('--- updating SpreadSheet ---')
+            update_gspread(data)
+
+        except Exception as e:
+            print(f"ERROR: {e}")
+            log(str(e))
+
+        print("--- waiting 5 sec ---")
+        time.sleep(5)
     
 
 if __name__ == "__main__":
