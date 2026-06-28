@@ -6,7 +6,7 @@ from datetime import datetime
 import time
 # original modules
 from common_lib_mw import kv_com as kv
-
+import db
 
 #--- CONSTANTS --------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent
@@ -22,9 +22,9 @@ STATUS_NAME = {
     2: "段替え",
     3: "故障停止",
     4: "材料切れ",
-    13: "自動中",
-    14: "停止中",
-    15: "異常中"
+    15: "自動中",
+    16: "停止中",
+    20: "異常中"
 }
 
 # 色をコードから変更する場合に使用する予定(現在は未使用)
@@ -49,17 +49,17 @@ STATUS_INFO = {
         "bg_color": "light_blue",
     },
 
-    13: {
+    15: {
         "name": "自動中",
         "bg_color": "green",
     },
 
-    14: {
+    16: {
         "name": "停止中",
         "bg_color": "white",
     },
 
-    15: {
+    20: {
         "name": "異常中",
         "bg_color": "pink",
     }
@@ -134,7 +134,10 @@ def update_gspread(data:dict):
     sht.batch_update(update_list)
 
 
-def read_data_from_plc(config) -> dict:
+def read_realtime_data_from_plc(config) -> dict:
+    """ リアルタイムデータをPLCから取得
+        (対象データ:現ステータス、生産数、アラーム数)
+    """
     plc_ip_add = config["master_plc"]["ip_address"]
     # print(plc_ip_add)
 
@@ -176,17 +179,116 @@ def log(msg: str):
         f.write(f"{now} {msg}\n")
 
 
+def read_1day_data_from_plc(config, mc_no: int) -> list[int]:
+    """ 1台1日分の全データ(1500デバイス)を取得 """
+    plc_ip_add = config["master_plc"]["ip_address"]
+
+    # 機械ごとの設定情報取得(machine_config.json参照)
+    machine = config["machines"][str(mc_no)]
+
+    # ブロックデータ受信(ZF/各設備1500個ずつ)
+    block_start_device = machine["block_start_device"]
+    block_data = kv.read_devices_u(plc_ip_add, block_start_device, 1500)
+
+    # 一時データ受信(DM20000/各設備60個ずつ)
+    temp_start_device = machine["temp_start_device"]
+    temp_data = kv.read_devices_u(plc_ip_add, temp_start_device, 60)
+
+    # block_dataとtemp_data結合
+    block_data = unite_block_and_temp(block_data, temp_data)
+
+    return block_data
+
+
+def unite_block_and_temp(block_data: list[int], temp_data: list[int]) -> list[int]:
+    """ ブロックデータ(1500個)とテンポラリデータ(60個)の統合処理 """
+    # データチェック(個数のみ) 
+    if len(block_data)!=1500 or len(temp_data)!=60:
+       raise ValueError(f"データサイズが不正です")
+    
+    # index=10〜1449 が 4:00からの1分ごとの稼働データ 1440個
+    invalid_pos = None
+
+    for i in range(10,1450):
+        if block_data[i] == 0:
+            invalid_pos = i
+            print(f"--- (invalid data position = {invalid_pos} / data replaced)")   # ForDebug
+            break
+
+    # 無効データ位置からtemp_dataに置き換える
+    if invalid_pos is not None:
+        replace_end = min(invalid_pos + 60, 1450)
+        replace_count = replace_end - invalid_pos
+
+        block_data[invalid_pos:replace_end] = temp_data[:replace_count]
+
+    return block_data
+
+
+def add_status_data_to_db(config):
+    """PLCの1日稼働データ(1500個)を受信し、DBへ登録する
+        (machine_config.jsonに記載がある全設備が対象)
+    """
+
+    db.create_table()
+
+    for mc_no, machine in config["machines"].items():
+
+        if not machine.get("enable", False):
+            print(f"--- MC{mc_no}: skipped(enable=false) ---")
+            continue
+
+        if "block_start_device" not in machine:
+            print(f"--- MC{mc_no}: block_start_device未設定のためスキップ ---")
+            continue
+
+        if "temp_start_device" not in machine:
+            print(f"--- MC{mc_no}: temp_start_device未設定のためスキップ ---")
+            continue
+
+        try:
+            print(f"--- MC{mc_no}: 1日稼働データ取得開始 ---")
+
+            data_1day = read_1day_data_from_plc(config, int(mc_no))
+
+            db.insert_1day_data(
+                machine_no=int(mc_no),
+                data=data_1day
+            )
+
+            print(f"--- MC{mc_no}: DB保存完了")
+        
+        except Exception as e:
+            print(f"ERROR MC{mc_no}: {e}")
+            log(f"ERROR MC{mc_no}: {e}")
+
+    # db.check_data()   # ForDebug
+
+
 def main():
     global config
     config = load_config()
 
+    # addstatus_data_to_db実行タイミング管理用
+    DB_PROCESS_INTERVAL = 10
+    process_counter = DB_PROCESS_INTERVAL   # 起動時実施
+
+
     while True:
         try:
-            data = read_data_from_plc(config)
+            data = read_realtime_data_from_plc(config)
             # debug_dump(data)
 
             print('--- updating SpreadSheet ---')
             update_gspread(data)
+
+            if process_counter >= DB_PROCESS_INTERVAL:
+                add_status_data_to_db(config)
+                process_counter = 0
+
+
+            process_counter += 1
+            print(f"process_counter = {process_counter}")
 
         except Exception as e:
             print(f"ERROR: {e}")

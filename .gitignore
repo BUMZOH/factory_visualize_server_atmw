@@ -14,6 +14,9 @@ __pycache__/
 # ログ
 app/log.txt
 
+# 共通モジュール
+app/common_lib_mw/
+
 # 認証関係
 app/secrets/*
 !app/secrets/README.md
