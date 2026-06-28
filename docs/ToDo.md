@@ -2,7 +2,9 @@
 
 ## 未完了
 - [ ] 旧プログラムの処理内容確認
-- [ ] block_start_deviceとtemp_start_deviceのデバイス再チェック(jsonファイル)
+- [ ] SpreadSheetへP稼働率/A稼働率追加
+- [ ] SpreadSheet第4工場1F並び替え 穴明けとNCを分ける
+- [ ] 管理者用アプリ構想(SQLiteデータでDashboard)
 
 
 ## PLC関連
@@ -11,8 +13,10 @@
 - [ ] SDカードのファイル名が1日ずれている（要確認）
 
 ## 要検討
-- [ ] Active稼働率、Passive稼働率 導入
-- [ ] 達成率(実績/目標)導入
+- [ ] 達成率(実績/目標)導入(実績数だけで良いのでは？)
+- [ ] 生産数条件付き書式(優先列を用意し、目標判定する)
+　　　→ obsidian:優先度を考慮した生産数達成状況の表示
+
 
 
 
@@ -32,6 +36,7 @@
 - [X] DM400-からDM800への変更(ステータス番号も標準PC用へ)
 - [X] データベースを共有ファイルへ移動
 - [X] データベースに目標生産数追加(名称をtarget_production)(実績はactual_productionへ)
+- [X] block_start_deviceとtemp_start_deviceのデバイス再チェック(jsonファイル)
 
 
 
