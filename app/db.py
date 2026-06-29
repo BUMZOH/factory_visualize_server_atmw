@@ -57,16 +57,10 @@ def create_table():
 
         cur.execute(f"""
             CREATE TABLE IF NOT EXISTS operation_data (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id INTEGER PRIMARY KEY,
                 {columns_sql},
                 UNIQUE(machine_no, production_date)
             )
-        """)
-
-        cur.execute("""
-            CREATE UNIQUE INDEX IF NOT EXISTS
-            idx_operation_data_machine_date
-            ON operation_data(machine_no, production_date)
         """)
 
         conn.commit()
