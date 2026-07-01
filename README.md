@@ -19,4 +19,9 @@ Client E-mail : spreadsheet-bot@mitsuwa-mainfactory-visualize.iam.gserviceaccoun
 JSON File : mitsuwa-mainfactory.json
 
 
+## サーバ情報
+サーバ: 光和工業本社 第2工場事務所PC
+TeamViewer ID: 1 293 365 969
+
+
 ## 注意事項

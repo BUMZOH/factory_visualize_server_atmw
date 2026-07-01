@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 import gspread
 from gspread.utils import a1_to_rowcol, rowcol_to_a1
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
 # original modules
 from common_lib_mw import kv_com as kv
@@ -88,10 +88,14 @@ def get_status_cell(start_cell: str) -> str:
 
 
 def update_gspread(data:dict):
+    # debug_dump(data)
+
     spreadsheet = connect_gspread()
     sht = spreadsheet.worksheet("RealtimeTable")
 
     update_list = []
+
+    production_date = get_production_date()
 
     for mc_no, result in data.items():
         machine = config["machines"][mc_no]
@@ -107,13 +111,27 @@ def update_gspread(data:dict):
         )
         status_name = status_info["name"]
 
+        passive_operating_rate = db.get_1day_column_value(
+            machine_no=int(mc_no),
+            puroduction_date=production_date,
+            column_name="passive_operating_rate"
+        )
+
+        active_operating_rate = db.get_1day_column_value(
+            machine_no=int(mc_no),
+            puroduction_date=production_date,
+            column_name="active_operating_rate"
+        )
+
         values = [[
             f"MC{mc_no}",
             machine["name"],
             status_name,
             result["actual_count"],
             result["target_count"],
-            result["alarm_count"]
+            result["alarm_count"],
+            passive_operating_rate,
+            active_operating_rate,
         ]]
 
         update_list.append({
@@ -126,12 +144,28 @@ def update_gspread(data:dict):
     # 更新日時
     update_time = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
     update_list.append({
-        "range": "P1",
+        "range": "V1",
         "values": [[update_time]]
     })
 
     # debug_dump(update_list)
     sht.batch_update(update_list)
+
+
+def get_production_date() -> str:
+    """生産日付を取得する
+
+    4:00～翌日3:59までを同じ日付として扱う
+    例:
+        2026-07-01 03:59 -> 2026-06-30
+        2026-07-01 04:00 -> 2026-07-01
+    """
+    now = datetime.now()
+
+    if now.hour < 4:
+        now = now - timedelta(days=1)
+    
+    return now.strftime("%Y-%m-%d")
 
 
 def read_realtime_data_from_plc(config) -> dict:

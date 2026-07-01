@@ -3,7 +3,6 @@
 ## 未完了
 - [ ] 旧プログラムの処理内容確認
 - [ ] SpreadSheetへP稼働率/A稼働率追加
-- [ ] SpreadSheet第4工場1F並び替え 穴明けとNCを分ける
 - [ ] 管理者用アプリ構想(SQLiteデータでDashboard)
 
 
@@ -37,6 +36,8 @@
 - [X] データベースを共有ファイルへ移動
 - [X] データベースに目標生産数追加(名称をtarget_production)(実績はactual_productionへ)
 - [X] block_start_deviceとtemp_start_deviceのデバイス再チェック(jsonファイル)
+- [X] SpreadSheet第4工場1F並び替え 穴明けとNCを分ける
+
 
 
 

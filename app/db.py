@@ -239,9 +239,54 @@ def calc_operation_summary(data: list[int]) -> dict:
     return result
 
 
+def get_1day_column_value(
+        machine_no: int,
+        puroduction_date: str,
+        column_name: str
+):
+    """指定した機械番号・日付・カラム名の値を取得する
+
+    Args:
+        machine_no (int): 機械番号
+        production_date (str): 生産日付（YYYY-MM-DD）
+        column_name (str): 取得したいカラム名
+
+    Returns:
+        指定カラムの値
+        SQLiteに保存されている型に応じて返る
+        INTEGER -> int
+        REAL    -> float
+        TEXT    -> str
+        BLOB    -> bytes
+
+        データが存在しない場合は None
+    """
+
+    if column_name not in OPERATION_DATA_COLUMNS:
+        raise ValueError(f"存在しないカラム名です: {column_name}")
+    
+    with sqlite3.connect(DB_PATH) as conn:
+        cur = conn.cursor()
+
+        cur.execute(f"""
+            SELECT
+                {column_name}
+            FROM operation_data
+            WHERE machine_no = ?
+              AND production_date = ?
+                 
+        """, (machine_no, puroduction_date))
+
+        row = cur.fetchone()
+
+    if row is None:
+        return None
+    
+    return row[0]
+    
 
 if __name__ == "__main__":
-    
+
     create_table()
 
     # Create Sample Data
