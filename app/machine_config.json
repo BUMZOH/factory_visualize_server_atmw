@@ -200,8 +200,8 @@
             "target_count_device": "DM636",
             "alarm_count_device": "DM736",
             "spreadsheet_position": "B21",
-            "block_start_device": "ZF54000",
-            "temp_start_device": "DM22160"
+            "block_start_device": "ZF39000",
+            "temp_start_device": "DM21560"
         },
 
         "46": {
